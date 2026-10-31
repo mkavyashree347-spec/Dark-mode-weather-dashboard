@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="weather-card">
+    <div class="header">
+      <input type="text" id="cityInput" placeholder="Enter city name..." value="New York">
+      <button onclick="updateCity()">Search</button>
+    </div>
+
+    <div class="main-info">
+      <h1 id="cityName">New York</h1>
+      <div class="temp-display">
+        <span id="temp">22</span>°<span id="unit">C</span>
+      </div>
+      <p id="condition">☀️ Sunny</p>
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-item">
+        <span>Humidity</span>
+        <strong id="humidity">45%</strong>
+      </div>
+      <div class="detail-item">
+        <span>Wind Speed</span>
+        <strong id="wind">12 km/h</strong>
+      </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleUnit()">Switch °C / °F</button>
+  </div>
+
+  <script>
+    let isCelsius = true;
+    let baseTemp = 22;
+
+    function updateCity() {
+      const input = document.getElementById('cityInput').value;
+      if (input.trim() !== '') {
+        document.getElementById('cityName').innerText = input;
+      }
+    }
+
+    function toggleUnit() {
+      const tempEl = document.getElementById('temp');
+      const unitEl = document.getElementById('unit');
+      
+      if (isCelsius) {
+        tempEl.innerText = Math.round((baseTemp * 9/5) + 32);
+        unitEl.innerText = 'F';
+      } else {
+        tempEl.innerText = baseTemp;
+        unitEl.innerText = 'C';
+      }
+      isCelsius = !isCelsius;
+    }
+  </script>
+</body>
+</html>
